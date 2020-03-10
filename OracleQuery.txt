@@ -1,0 +1,153 @@
+1.	List the Name and Designation code of the staff who have joined before Jan 2003 and whose salary range is between 1200 and 2500. Display the columns with user defined Column headers. Hint: Use As clause along with other operators
+select staff_name,design_code 
+from staff_master 
+where hiredate<'01-JAN-2003' and sal between 1200 and 2500 ;
+
+2.	List the staff code, name, and department number of the staff who have experience of 18 or more years and sort them based on their experience. 
+ select s.staff_code,e.ename,e.deptno from staff_master s,emp e
+ where (to_char(sysdate,'YYYY')-to_char(e.hiredate,'YYYY') )>18 order by hiredate ;
+ 
+3.	Display the staff details who do not have manager. Hint: Use is null  
+ select * from staff_master where mgr_code is null;
+ 
+ 4.	Display the Book details that were published during the period of 2001 to 2004. Also display book details with Book name having the character ‘&’ anywhere.
+ select * from book_master where Book_pub_year between '2001' and '2004' and book_name like '%&%';
+ 
+ 5.	List the names of the staff having ‘_’ character in their name. 
+ select staff_name from staff_master where instr(staff_name,'_',1)>0;
+ 
+ 
+ 1.	Create a query which will display Staff Name, Salary of each staff. Format the salary to be 15 characters long and left padded with ‘$’. 
+ select staff_name,lpad(staff_sal,15,'$') from staff_master;
+ 
+ 2.	Display name and date of birth of students where date of birth must be displayed in the format similar to “January, 12 1981” for those who were born on Saturday or Sunday.
+ select student_name,to_char(student_dob,'month-dd-yyyy') from student_master where to_char(student_dob,'dy') in('sat','sun');
+ 
+ 3.	Display each Staff name and number of months they worked for the organization. Label the column as ‘Months Worked’. Order your result by number of months employed. Also Round the number of months to closest whole number.
+  select staff_name,round(months_between(to_date(sysdate,'dd-mm-yyyy'),to_date(hiredate,'dd-mm-yyyy'))) as month  from staff_master order by month;
+  
+  4.	List the details of the staff who have joined in first half of December month (irrespective of the year). 
+  select * from staff_master where to_char(hiredate,'dd') between 1 and 15 and to_char(hiredate,'mon')='dec';
+  
+  5.	Write a query that displays Staff Name, Salary, and Grade of all staff. Grade depends 
+  
+ // select staff_name,staff_sal, decode(staff_sal, staff_sal>=50000, 'A',staff_sal>=25000,'B',staff_sal>=10000,'C','D') Grade from staff_master;
+  select staff_name,staff_sal, case
+                              when  staff_sal>=50000 then 'A'
+                              when  staff_sal>=25000 then 'B'
+                              when  staff_sal>=10000 then 'C'
+							  else 'D'end as Grade from staff_master;
+  6.	Display the Staff Name, Hire date and day of the week on which staff was hired. Label the column as DAY. Order the result by the day of the week starting with Monday.                                    
+  select staff_name,hiredate,to_char(hiredate,'dy') from staff_master  order by to_char(hiredate,'dy');
+  
+  7.	Write a query to find the position of third occurrence of ‘i’ in the given word ‘Mississippi’
+         select instr('Mississippi','i',1,3) from dual;
+		 
+8.	Write a query to find the pay date for the month. Pay date is the last Friday of the month. Display the date in the format “Twenty Eighth of January, 2002”. Label the heading as PAY DATE. Hint: use to_char, next_day and last_day functions
+	SELECT to_char(NEXT_DAY( LAST_DAY( SYSDATE ) - INTERVAL '7' DAY, 'FRIDAY' ),'fmDdspth "of" month ,yyyy') pay_date  FROM DUAL;
+9.select student_code,student_name,dept_name,decode(d.dept_code,20,'Electricals',30,'Electronics','others') from student_master s,department_master d where s.dept_code=d.dept_code;
+
+
+2.2
+1.select round(max(sal)) maximum,min(sal) minimum ,sum(sal) total_sal,round(avg(sal)) average_sal from emp group by deptno;
+2.select deptno,count(mgr) "number of managers" from emp group by deptno;
+3.select deptno,sum(sal) from emp where mgr is null group by deptno having sum(sal)>2000
+
+
+Joins Query---
+
+1.select s.staff_name,s.staff_sal,d.dept_code,d.dept_name from staff_master s,department_master d where s.dept_code=d.dept_code;
+2.//select s.staff_code,s.staff_name,d.dept_name,s.mgr_code from staff_master s,department_master d where s.dept_code=d.dept_code ;
+select e1.staff_name,d.dept_code,d.dept_name,e2.staff_name manager
+ from staff_master e1,staff_master e2 ,department_master d where e1.mgr_code=e2.staff_code and e1.dept_code=d.dept_code;
+3.select s.student_code,s.student_name,b.book_code,b.book_name from student_master s,book_master b,book_transactions t where s.student_code=t.student_code and b.book_code=t.book_code and book_expected_return_date=book_actual_return_date;
+4.select s.staff_code,s.staff_name,d.dept_name,ds.design_name,b.book_code,b.book_name,bt.book_issue_date from staff_master s,department_master d,designation_master ds ,book_master b,book_transactions bt where s.design_code=ds.design_code and s.dept_code=d.dept_code and s.staff_code=bt.staff_code and bt.book_code=b.book_code and (sysdate-book_issue_date)<31;
+5.select s.staff_code , s.staff_name, ds.design_name,d.dept_name,b.book_code,b.book_name,5*(sysdate-book_expected_return_date ) Fine from staff_master s,designation_master ds, department_master d,book_master b,book_transactions bt where s.dept_code=d.dept_code and s.design_code=ds.design_code and s.staff_code=bt.staff_code and bt.book_code=b.book_code;
+6.select staff_code,staff_name,staff_sal from staff_master where staff_sal<(select avg(staff_sal) from staff_master);
+7. select book_name,Book_pub_author from book_master where Book_pub_author in
+   (select Book_pub_author from book_master group by Book_pub_author having count(*)>1);
+8.
+9.
+10.
+11.select ename manager, e3 "team strength"
+	from(select mgr e2,count(*) e3 from emp where mgr is not null group by mgr having count(*)>0),emp
+	where empno=e2;
+12.
+13.
+
+4.
+
+
+1)Create table Customer(CustomerId Number(5),Cust_Name varchar2(20),Address1 Varchar2(30),Address2 Varchar2(30));
+2)Alter table Customer modify cust_name varchar2(30);
+3)
+  (a)-Alter table Customer add (Gender Varchar2(1),Age Number(3),PhoneNo Number(10));
+  (b)-Rename Customer to Cust_Table;
+4) Insert into cust_table values(1000, 'Allen', '#115 Chicago', '#115 Chicago', 'M', 25, 7878776);
+   Insert into cust_table values(1001, 'George','#116 France',' #116 France', 'M', 25, 434524);
+   Insert into cust_table values(1002, 'Becker', '#114 New York', '#114 New York', 'M', 45, 431525);
+5)Alter table cust_table rename column CUSTOMERID to Custld_Prim ;
+  Alter table cust_table add primary key(Custld_Prim);
+6)Insert into cust_table values(1002, 'John', '#114 Chicago', '#114 Chicago', 'M', 45, 439525);
+Insert into cust_table values(1002, 'John', '#114 Chicago', '#114 Chicago', 'M', 45, 439525)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007089) violated
+7) ALTER TABLE cust_table  DROP Primary key;
+   Insert into cust_table values(1002, 'Becker', '#114 New York', '#114 New york' , 'M', 45, 431525);
+   Insert into cust_table values(1003, 'Nanapatekar',' #115 India','#115 India' , 'M', 45, 431525);
+8) ALTER TABLE cust_table add  primary key(cust_name);
+   ALTER TABLE cust_table add  primary key(cust_name)
+   *
+   ERROR at line 1:
+   ORA-02437: cannot validate (SYSTEM.SYS_C007090) - primary key violated
+9)ALTER TABLE cust_table  DROP Primary key;
+  Insert into cust_table values(1002,' Becker', '#114 New York', '#114 New york' , 'M', 45, 431525, 15000.50);
+Insert into cust_table values(1002,' Becker', '#114 New York', '#114 New york' , 'M', 45, 431525, 15000.50)
+            *
+ERROR at line 1:
+ORA-00913: too many values
+ 
+ Insert into cust_table values(1003,' Nanapatekar',' #115 India',' #115 India' , 'M', 45, 431525, 20000.50);
+Insert into cust_table values(1003,' Nanapatekar',' #115 India',' #115 India' , 'M', 45, 431525, 20000.50)
+            *
+ERROR at line 1:
+ORA-00913: too many values
+
+10)Truncate table cust_table;
+
+11)Alter table cust_table add(E_mail  varchar2(30));
+
+12)Alter table cust_table drop column E_Mail;
+
+13)Create Table Suppliers_table(CustomerId Number(4),CustomerName varchar2(20),Address1 varchar2(30),Address2 varchar2(30),phoneno Number(10));
+  Alter table Suppliers_table Rename column CustomerId to SuppID;
+   Alter table Suppliers_table Rename column CustomerName to SName;
+   Alter table Suppliers_table Rename column Address1 to Addr1;
+   Alter table Suppliers_table Rename column Address2 to Addr2;
+   Alter table Suppliers_table Rename column phoneno to Contactno;
+
+14)Drop table Suppliers_table;
+ CREATE TABLE CustomerMaster
+(
+  CustomerId Number(10) not null,
+  CustomerName Varchar2(30) Not Null,Address1 Varchar2(30) Not Null,Address2 Varchar2(30),
+  Gender Varchar2(1),Age Number(3),PhoneNo Number(10),
+  CONSTRAINT CustId_PK PRIMARY KEY (CustomerId)
+);
+ 5..
+5.
+1.create table employee as select * from emp where 1=3;
+desc employee
+2.insert into employee  select * from emp;
+insert into employee (empno,ename,sal,deptno) select empno,ename,sal,deptno from emp;
+3.update employee set job=(select job from employee where empno=7788),deptno=(select deptno from employee where empno=7788)  where empno=7698;
+4. delete from department_master where dept_name='sales';
+5.update employee set deptno=(select deptno from employee where empno=7698)  where empno=7788;
+6.insert into employee values('&empno','&ename','&job','&mgr','&hiredate','&sal','&comm','&deptno');
+
+6.
+1.insert into customerMaster values('&CustomerId','&CustomerName','&Address1','&Address2','&Gender','&Age','&PhoneNo');
+2.SAVEPOINT SP1;
+3.Insert into  CustomerMaster values (6003,' JOHN',' #114 Chicago', '#114 Chicago', 'M', 45, 439525);
+4.ROLLBACK TO SP1;
