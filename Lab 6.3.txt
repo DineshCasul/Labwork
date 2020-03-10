@@ -1,0 +1,103 @@
+
+package com.cg.eis.exception;
+
+public class EmployeeException extends Exception {
+
+
+	 public EmployeeException (String str) {
+	
+		  System.out.println(str);
+}
+
+	public char[] getSalary(int sal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+package com.cg.eis.pl;
+import java.util.Scanner;
+
+
+import com.cg.eis.bean.employee;
+import com.cg.eis.exception.EmployeeException;
+import com.cg.eis.exception.exception;
+import com.cg.eis.service.insuranceschemeimplementation;
+
+public class employeeinsurancedemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scr=new Scanner(System.in); 
+		
+		System.out.println("enter employee details below");
+		
+		System.out.println("enter employee ID:");
+		int id=scr.nextInt();
+		System.out.println("enter name:");
+		String name=scr.next();
+		
+		System.out.println("enter designation:");
+		String desig=scr.next();
+		
+		
+
+		System.out.println("enter salary:");
+		int sal=scr.nextInt();
+
+		  try {
+		   if(sal < 3000) 
+		   throw new EmployeeException("Invalid Salary");
+		   
+		   //else
+		     //emp.setSalary(sal); 
+		  }
+		  
+		  catch (EmployeeException a) {
+		   System.out.println(a.getSalary(sal));
+		  }	    
+
+		  
+		
+		employee emp=new employee();
+		emp.setId(id);
+		emp.setName(name);
+		emp.setDesignation(desig);
+		//emp.setSalary(sal);
+		insuranceschemeimplementation ici =new insuranceschemeimplementation();
+		emp.setInsurancescheme(ici.calculateisurancesscheme(sal, desig));
+		//emp.setInsurancescheme(ici.calculateisurancesscheme(emp.getSalary(), emp.getDesignation()));(also write)
+		
+		System.out.println(emp);
+		
+	
+
+}
+}
+
+package com.cg.eis.service;
+
+public class insuranceschemeimplementation implements insurancescheme{
+
+	@Override
+	public String calculateisurancesscheme(int salary, String designation) {
+		// TODO Auto-generated method stub
+		if(salary<100 && designation.contentEquals(designation))
+			return "no scheme";
+		else if(salary>=5000 && designation.contentEquals(designation))
+			return "scheme A";
+		else if(salary>=500 && salary<=1000 && designation.contentEquals(designation))
+			return "scheme B";
+		else if(salary>1000 && salary<5000 && designation.contentEquals(designation))
+			return "scheme C";
+		else 
+		return null;
+	}
+
+	
+	
+
+}

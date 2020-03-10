@@ -1,0 +1,144 @@
+package com.cg.eis.bean;
+
+public class employee {
+	private int id;
+	private String name;
+	private int salary;
+	private String designation;
+	private String insurancescheme;
+	
+	@Override
+	public String toString() {
+		return "employee [id=" + id + ", name=" + name + ", salary=" + salary + ", designation=" + designation
+				+ ", insurancescheme=" + insurancescheme + "]";
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public String getInsurancescheme() {
+		return insurancescheme;
+	}
+	public void setInsurancescheme(String insurancescheme) {
+		this.insurancescheme = insurancescheme;
+	}
+	
+
+}
+
+
+package com.cg.eis.service;
+
+public interface EmployeeServices {
+	
+	public String InsuranceScheme(double salary, String designation);
+
+}
+
+
+package com.cg.eis.service;
+
+public class EmployeeServicesImpl implements EmployeeServices {
+
+	@Override
+	public String InsuranceScheme(double salary, String designation) {
+		// TODO Auto-generated method stub
+		
+		if(salary<5000 && designation.equals(designation))
+		return "no scheme";
+		
+		else if(salary>=40000 && designation.equals(designation))
+			return "scheme A";
+		else if(salary>=20000 && salary<40000 && designation.equals(designation))
+				return "scheme B";
+		else if(salary>5000 && salary<20000 && designation.equals(designation))
+			return "scheme C";
+		else 
+			return "salary is not in range for schemes";
+	}
+	
+	
+
+}
+
+
+package com.cg.eis.pl;
+
+import java.util.Scanner;
+
+import com.cg.eis.bean.employee;
+import com.cg.eis.service.EmployeeServicesImpl;
+
+public class EmployeeServiceMAin {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scr=new Scanner(System.in);
+		System.out.println("Enter employee details");
+		System.out.println("enter ID");
+		String id=scr.next();
+		System.out.println("Enter name");
+		String name=scr.next();
+		System.out.println("enter salary:");
+		String sal=scr.next();
+		System.out.println("Enter designation:");
+		String desig=scr.next();
+		
+		
+		 employee emp=new employee();
+		 
+		 emp.setId(Integer.parseInt(id));
+		 emp.setName(name);
+		 emp.setSalary(Integer.parseInt(sal));
+		 emp.setDesignation(desig);
+		 
+		 EmployeeServicesImpl empsr=new EmployeeServicesImpl();
+		 
+		 emp.setInsurancescheme(empsr.InsuranceScheme(Integer.parseInt(sal), desig));
+		 
+		 
+		 System.out.println(emp);
+		
+
+	}
+
+}
+
+
+
+
+
+
+OUTPUT
+
+Enter employee details
+enter ID
+123
+Enter name
+Yash
+enter salary:
+20000
+Enter designation:
+data analyst
+employee [id=123, name=Yash, salary=20000, designation=data, insurancescheme=scheme B]

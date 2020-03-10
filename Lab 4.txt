@@ -1,0 +1,667 @@
+(4.1)
+public class Person {
+
+
+	private String name;
+	private float age;
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getAge() {
+		return age;
+	}
+	public void setAge(float age) {
+		this.age = age;
+	}
+
+}
+
+
+
+
+public class Account {
+	private long accNum;
+	private double balance;
+	
+	@Override
+	public String toString() {
+		return "Account [accNum=" + accNum + ", balance=" + balance + ", accHolder=" + accHolder + "]";
+	}
+
+	public long getAccNum() {
+		return accNum;
+	}
+
+	public void setAccNum(long accNum) {
+		this.accNum = accNum;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public Person getAccHolder() {
+		return accHolder;
+	}
+
+	public void setAccHolder(Person accHolder) {
+		this.accHolder = accHolder;
+	}
+
+	private Person accHolder;
+	
+	public void deposit(double amount) {
+		this.balance= this.balance+amount;
+		System.out.println("updated deposit balance="+this.balance);
+		
+	}
+	
+	public void withdraw(double amount) {
+		if(amount>balance) {
+			System.out.println("you dont have suffiecient balance");
+				}
+		else {
+			System.out.println("withdraw amount="+amount);
+			this.balance=this.balance - amount;
+			System.out.println("your account balance="+this.balance);
+		}
+			
+	}
+	
+
+}
+
+
+import java.util.Scanner;
+
+public class Accountmain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scr=new Scanner(System.in);
+		 Person accHolder=new Person();
+		 Person accHolder2=new Person();
+		 Account act=new Account();
+		 
+	     Account act2=new Account();
+		 
+		 String name,name2;
+		 String age,age2;
+		 String accnum,accnum2;
+		 
+		
+		System.out.println("Enter name:");
+		name=scr.next();
+		System.out.println("Enter age:");
+		age=scr.next();	
+		System.out.println("enter initial amount");
+		String bal=scr.next();	
+		System.out.println("Enter account number:");
+        accnum=scr.next();
+        System.out.println("Enter amount to deposit:");
+        int depo=scr.nextInt();
+        System.out.println("Enter amount to withdraw:");
+        double withdr=scr.nextDouble();
+        
+        
+    	accHolder.setName(name);
+        accHolder.setAge(Float.valueOf(age));
+        act.setBalance(Double.parseDouble(bal));
+        act.setAccNum(Long.parseLong(accnum));
+        act.deposit(depo);
+        act.withdraw(withdr);
+        act.setAccHolder(accHolder);
+        
+        System.out.println("Enter name:");
+		name2=scr.next();
+		System.out.println("Enter age:");
+		age2=scr.next();	
+		System.out.println("enter initial amount");
+		String bal2=scr.next();	
+		System.out.println("Enter account number:");
+        accnum2=scr.next();
+        System.out.println("Enter amount to deposit:");
+        int depo2=scr.nextInt();
+        System.out.println("Enter amount to withdraw:");
+        double withdr2=scr.nextDouble();
+        
+       
+        
+        accHolder2.setName(name2);
+        accHolder2.setAge(Float.valueOf(age2));
+        act2.setBalance(Double.parseDouble(bal2));
+        act2.setAccNum(Long.parseLong(accnum2));
+        act2.deposit(depo2);
+        act2.withdraw(withdr2);
+        act2.setAccHolder(accHolder2);
+ 		
+    		
+    		//System.out.println("Initial balance="+act.getBalance());
+    		System.out.println(act);
+    		System.out.println(act2);
+		}
+		
+		
+	
+		
+	
+		
+		
+	}
+
+________________________________________________________________________________________________________________________________________________________________________
+OUTPUT:
+(4.1)
+Enter name:
+smith
+
+Enter age:
+22
+
+ initial amount2000.0
+Enter account number:
+123
+
+Enter amount to deposit:
+2000
+
+Enter amount to withdraw:
+1000
+
+updated deposit balance=4000.0
+withdraw amount=1000.0
+your account balance=3000.0
+Enter name:
+kathy
+
+Enter age:
+23
+
+initial amount3000.0
+Enter account number:
+345
+
+Enter amount to deposit:
+2000
+
+Enter amount to withdraw:
+1000
+
+updated deposit balance=5000.0
+withdraw amount=1000.0
+your account balance=4000.0
+Account [accNum=123, balance=3000.0, accHolder=Person [name=smith, age=22.0]]
+Account [accNum=345, balance=4000.0, accHolder=Person [name=kathy, age=23.0]]
+	
+________________________________________________________________________________________________________________________________
+(4.2)	
+
+public class Person {
+
+
+	private String name;
+	private float age;
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getAge() {
+		return age;
+	}
+	public void setAge(float age) {
+		this.age = age;
+	}
+
+}
+
+
+
+
+public class Account extends Person {
+	private long accNum;
+	private double balance;
+	private Person accHolder;
+	
+	@Override
+	public String toString() {
+		return "Account [accNum=" + accNum + ", balance=" + balance + ", accHolder=" + accHolder + "]";
+	}
+
+	public long getAccNum() {
+		return accNum;
+	}
+
+	public void setAccNum(long accNum) {
+		this.accNum = accNum;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public Person getAccHolder() {
+		return accHolder;
+	}
+
+	public void setAccHolder(Person accHolder) {
+		this.accHolder = accHolder;
+	}
+
+	
+	
+	public void deposit(double amount) {
+		balance= balance+amount;
+		System.out.println("updated deposit balance="+balance);
+		
+	}
+	
+
+
+
+public class SavingAccount extends Account{
+	final int MinimumBalance=500;
+	public double balance;
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+	@Override
+	public long getAccNum() {
+		// TODO Auto-generated method stub
+		return super.getAccNum();
+	}
+
+	@Override
+	public void setAccNum(long accNum) {
+		// TODO Auto-generated method stub
+		super.setAccNum(accNum);
+	}
+
+	@Override
+	public Person getAccHolder() {
+		// TODO Auto-generated method stub
+		return super.getAccHolder();
+	}
+
+	@Override
+	public void setAccHolder(Person accHolder) {
+		// TODO Auto-generated method stub
+		super.setAccHolder(accHolder);
+	}
+
+	
+	
+	public void withdraw(double amount) {
+		// TODO Auto-generated method stub
+		if(balance<=MinimumBalance) {
+			System.out.println("you cannot withdraw amount as minimum balance is low.");
+		}
+		else
+			balance=balance-amount;
+		if (balance<500) {
+			System.out.println("you cannot withdraw");
+		}
+		else
+		System.out.println("after withdraw your balance is"+ balance);
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	} 
+		
+	}
+
+
+
+import java.util.Scanner;
+
+public class SavingaccountMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scr=new Scanner(System.in);
+		SavingAccount saveA=new SavingAccount();
+		Person accHolder=new Person();
+		
+		
+		System.out.println("enter name");
+		String name=scr.next();
+		System.out.println("enter age:");
+		String age=scr.next();
+		System.out.println("Enter account number");
+		String accNum=scr.next();
+	
+		System.out.println("minimum amount in account should be 500");
+		
+		saveA.setBalance(2000);
+		System.out.println("your balance is:"+saveA.getBalance());
+		System.out.println("Enter amount to withdraw");
+		double withdr=scr.nextDouble();
+		
+		accHolder.setName(name);
+		accHolder.setAge(Float.parseFloat(age));
+		saveA.withdraw(withdr);
+		saveA.setAccNum(Long.parseLong(accNum));
+		saveA.setAccHolder(accHolder);
+		
+		System.out.println(saveA);
+	
+
+	}
+
+}
+
+____________________________________________________________________________________________________________
+OUTPUT
+
+enter name
+kathy
+enter age:
+23
+Enter account number
+123
+minimum amount in account should be 500
+your balance is:2000.0
+Enter amount to withdraw
+1000
+after withdraw your balance is1000.0
+Account [accNum=123, accHolder=Person [name=kathy, age=23.0]]
+
+[Second case]
+
+enter name
+kathy
+enter age:
+23
+Enter account number
+123
+minimum amount in account should be 500
+your balance is:2000.0
+Enter amount to withdraw
+1600
+you cannot withdraw as balance is less than rs500
+Account [accNum=123, accHolder=Person [name=kathy, age=23.0]]
+
+_________________________________________________________________________________________________________
+
+public class Person {
+
+
+	private String name;
+	private float age;
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getAge() {
+		return age;
+	}
+	public void setAge(float age) {
+		this.age = age;
+	}
+	public void withdraw(double amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+
+
+
+public class Account extends Person {
+	private long accNum;
+	private double balance;
+	private Person accHolder;
+	
+	@Override
+	public String toString() {
+		return "Account [accNum=" + accNum + ", accHolder=" + accHolder + "]";
+	}
+
+	public long getAccNum() {
+		return accNum;
+	}
+
+	public void setAccNum(long accNum) {
+		this.accNum = accNum;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public Person getAccHolder() {
+		return accHolder;
+	}
+
+	public void setAccHolder(Person accHolder) {
+		this.accHolder = accHolder;
+	}
+
+	
+	
+	public void deposit(double amount) {
+		balance= balance+amount;
+		System.out.println("updated deposit balance="+balance);
+		
+	}
+
+
+
+public class CurrentAccount extends Account {
+	
+	final double overdraft_limit=10000;
+	boolean x;
+	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+	@Override
+	public long getAccNum() {
+		// TODO Auto-generated method stub
+		return super.getAccNum();
+	}
+	@Override
+	public void setAccNum(long accNum) {
+		// TODO Auto-generated method stub
+		super.setAccNum(accNum);
+	}
+	@Override
+	public double getBalance() {
+		// TODO Auto-generated method stub
+		return super.getBalance();
+	}
+	@Override
+	public void setBalance(double balance) {
+		// TODO Auto-generated method stub
+		super.setBalance(balance);
+	}
+	@Override
+	public Person getAccHolder() {
+		// TODO Auto-generated method stub
+		return super.getAccHolder();
+	}
+	@Override
+	public void setAccHolder(Person accHolder) {
+		// TODO Auto-generated method stub
+		super.setAccHolder(accHolder);
+	}
+	@Override
+	public void deposit(double amount) {
+		// TODO Auto-generated method stub
+		super.deposit(amount);
+	}
+	@Override
+	public void withdraw(double amount) {
+		// TODO Auto-generated method stub
+		while(x=true) {
+			if(amount<=overdraft_limit) {
+				setBalance(getBalance()-amount);
+				System.out.println("withdraw successful");
+				System.out.println("balance left in your account:"+getBalance());
+				break;
+				
+			}else {
+				System.out.println("transaction could not processed");
+				System.out.println("over draft limit exceeds");
+				
+				break;
+			}
+				
+		}
+		
+		super.withdraw(amount);
+	}
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return super.getName();
+	}
+	@Override
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		super.setName(name);
+	}
+	@Override
+	public float getAge() {
+		// TODO Auto-generated method stub
+		return super.getAge();
+	}
+	@Override
+	public void setAge(float age) {
+		// TODO Auto-generated method stub
+		super.setAge(age);
+	}
+	
+
+
+	
+
+}
+
+
+import java.util.Scanner;
+
+public class CurrentAccountMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scr=new Scanner(System.in);
+		CurrentAccount currAcc=new CurrentAccount();
+		Person accHolder=new Person();
+		
+		System.out.println("enter name");
+		String name=scr.next();
+		System.out.println("enter age");
+		String age=scr.next();
+		System.out.println("enter account number");
+		String accnum=scr.next();
+		System.out.println("enter amount to withdraw");
+		String withdr=scr.next();
+		currAcc.setBalance(1000);
+		System.out.println("your initial balance is:"+currAcc.getBalance());
+		System.out.println("your over draft limit is:"+currAcc.overdraft_limit);
+		
+		
+		
+		
+		accHolder.setName(name);
+		accHolder.setAge(Float.parseFloat(age));
+		currAcc.setAccHolder(accHolder);
+		currAcc.setAccNum(Long.parseLong(accnum));
+		currAcc.withdraw(Double.parseDouble(withdr));
+		
+		System.out.println(currAcc);
+
+	}
+
+}
+_____________________________________________________________________________________________
+OUTPUT
+(Case 1)
+enter name
+kathy
+enter age
+22
+enter account number
+123
+enter amount to withdraw
+100
+your initial balance is:1000.0
+your over draft limit is:10000.0
+withdraw successful
+balance left in your account:900.0
+Account [accNum=123, accHolder=Person [name=kathy, age=22.0]]
+
+(case 2)
+enter name
+
+anand
+enter age
+45
+enter account number
+123
+enter amount to withdraw
+9000
+your initial balance is:1000.0
+your over draft limit is:10000.0
+withdraw successful
+balance left in your account:-8000.0
+Account [accNum=123, accHolder=Person [name=anand, age=45.0]]
+_______________________________________________________________________________________________________
+
+	
+	
+
+
+	
+
+	
+
+
+

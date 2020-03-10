@@ -1,0 +1,215 @@
+(2.1)
+package com.capgemini;
+
+public class PersonDetails {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Person Details:");
+		System.out.println("________________\n");
+		System.out.println("First Name: Anand");
+		System.out.println("Last Name:Soni");
+		System.out.println("Gender:M");
+		System.out.println("Age: 22");
+		System.out.println("Weight:70kg");
+		
+
+	}
+
+}
+
+____________________________________________________________________________________________________________
+(2.2)
+package com.capgemini;
+
+import java.util.Scanner;
+
+public class CheckPositiveNegative {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	Scanner scr=new Scanner(System.in);
+	System.out.println("Enter a number:");
+	int num=scr.nextInt();
+	
+	if(num>0) {
+		System.out.println("Number is positive");
+	}else
+		System.out.println("Number is negative");
+	
+
+	}
+
+}
+
+_____________________________________________________________________________________________________________
+
+
+(2.3)&(2.4)
+package com.capgemini;
+
+public class PersonClass {
+	private String firstName;
+	private String lastName;
+	private char gender;
+	private int phone;
+	
+	public int getPhone() {
+		return phone;
+	}
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	@Override
+	public String toString() {
+		return "PersonClass [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", phone="
+				+ phone + "]";
+	}
+
+
+}
+
+
+package com.capgemini;
+
+import java.util.Scanner;
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc=new Scanner(System.in);
+		PersonClass pc=new PersonClass();
+		
+		System.out.println("Person Details:");
+		System.out.println("_________________");
+		
+		System.out.println("First name:");
+		String fname=sc.next();
+		System.out.println("Last name:");
+		String lname=sc.next();
+		System.out.println("Enter gender:");
+		String gen=sc.next();
+		System.out.println("Enter phone number");
+		String ph=sc.next();
+		
+		pc.setFirstName(fname);
+		pc.setLastName(lname);
+		pc.setGender(gen.charAt(0));
+		pc.setPhone(Integer.parseInt(ph));
+		System.out.println(pc);
+		
+		
+
+	}
+
+}
+______________________________________________________________________________________________________________
+(2.5)
+package com.capgemini;
+
+public class PersonClass {
+	private String firstName;
+	private String lastName;
+	private char gender;
+	private int phone;
+	
+	public int getPhone() {
+		return phone;
+	}
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	@Override
+	public String toString() {
+		return "PersonClass [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", phone="
+				+ phone + "]";
+	}
+
+
+}
+
+package com.capgemini;
+
+import java.util.Scanner;
+enum gen{
+	M,F;
+}
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc=new Scanner(System.in);
+		PersonClass pc=new PersonClass();
+		
+		System.out.println("Person Details:");
+		System.out.println("_________________");
+		
+		System.out.println("First name:");
+		String fname=sc.next();
+		System.out.println("Last name:");
+		String lname=sc.next();
+		System.out.println("Enter gender:");
+		String gen=sc.next();
+		pc.setGender(gen.charAt(0));
+		if((gen.contentEquals("M")) || (gen.contentEquals("F"))) {
+			
+		}
+		else System.out.println("enter correct gender");
+	
+		System.out.println("Enter phone number");
+		String ph=sc.next();
+		
+		pc.setFirstName(fname);
+		pc.setLastName(lname);
+	
+		pc.setPhone(Integer.parseInt(ph));
+		System.out.println(pc);
+		
+		
+
+	}
+
+}
+
+___________________________________________________________________________

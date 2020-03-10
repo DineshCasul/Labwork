@@ -1,0 +1,358 @@
+(3.1)
+
+public class StringOperations {
+
+	private String str;
+
+	public String Addoperation(String str){
+		String out=str+str;
+		return out;
+		
+	}
+}
+
+
+
+import java.util.Scanner;
+
+
+public class StringDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scr =new Scanner(System.in);
+		
+		System.out.println("press 1 to Add two String\n press 2 to put hash at odd places\n press 3 to remove duplicate\n press 4 change odd char to uppercase\n press 5 to check positive and negative string ");
+		int choice=scr.nextInt();
+		
+		StringOperations Sops= new StringOperations();
+		
+		switch(choice){
+		case 1:
+			System.out.println("enter a String");
+			String input=scr.next();
+			
+			System.out.println(Sops.Addoperation(input));
+			break;
+		}
+		
+
+	}
+
+}
+
+________________________________________________________________________________________________________________________________________________________
+OUTPUT(3.1)
+press 1 to Add two String
+ press 2 to put hash at odd places
+ press 3 to remove duplicate
+ press 4 change odd char to uppercase
+ press 5 to check positive and negative string 
+1
+enter a String
+anand
+anandanand
+__________________________________________________________________________________________________________________________________________________________________________
+(3.2)
+
+
+public class StringOperations<Public> {
+
+    public String Oddhash(String str){
+	  String word="";
+	  for (int i=0;i<str.length();i++){
+		  if(i%2==1){
+			  word=word+str.charAt(i);
+		  }else
+			  word=word+'#';
+	  }
+	  return word;
+  }
+
+}
+
+import java.util.Scanner;
+
+
+public class StringDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scr =new Scanner(System.in);
+		
+		System.out.println("press 1 to Add two String\n press 2 to put hash at odd places\n press 3 to remove duplicate\n press 4 change odd char to uppercase\n press 5 to check positive and negative string ");
+		int choice=scr.nextInt();
+		
+		StringOperations Sops= new StringOperations();
+		
+		switch(choice){
+		case 1:
+			System.out.println("enter a String");
+			String input=scr.next();
+			
+			System.out.println(Sops.Addoperation(input));
+		    break;
+		    
+		case 2: 
+			System.out.println("enter a string:");
+			String input2=scr.next();
+			
+			System.out.println(Sops.Oddhash(input2));
+			break;
+		}
+	
+		
+
+	}
+
+}
+____________________________________________________________________________________________________________________________________________________________________________________________
+OUPUT (3.2)
+
+press 1 to Add two String
+ press 2 to put hash at odd places
+ press 3 to remove duplicate
+ press 4 change odd char to uppercase
+ press 5 to check positive and negative string 
+2
+enter a string:
+anand
+#n#n#
+___________________________________________________________________________________________________________________________________________________________________________________________________
+OUTPUT(3.3)
+
+public class StringOperations<Public> {
+
+
+    public String OddUppercase(String str){
+    	String word="";
+    	
+    	for(int i=0;i<str.length();i++){
+    		if(i%2==1){
+    			word=word+ Character.toUpperCase(str.charAt(i));
+    		}else
+    			word=word+ Character.toLowerCase(str.charAt(i));
+    		
+    		}
+    	return word;
+    	}
+    	
+    }
+
+
+
+import java.util.Scanner;
+
+
+public class StringDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scr =new Scanner(System.in);
+		
+		System.out.println("press 1 to Add two String\n press 2 to put hash at odd places\n press 3 to remove duplicate\n press 4 change odd char to uppercase\n press 5 to check positive and negative string ");
+		int choice=scr.nextInt();
+		
+		StringOperations Sops= new StringOperations();
+		
+		switch(choice){
+		case 1:
+			System.out.println("enter a String");
+			String input=scr.next();
+			
+			System.out.println(Sops.Addoperation(input));
+		    break;
+		    
+		case 2: 
+			System.out.println("enter a string:");
+			String input2=scr.next();
+			
+			System.out.println(Sops.Oddhash(input2));
+			break;
+			
+		case 3:
+			System.out.println("Enter a string");
+			String input3=scr.next();
+			break;
+			
+		case 4:
+			System.out.println("enter a string");
+			String input4=scr.next();
+			System.out.println(Sops.OddUppercase(input4));
+			break;
+		}
+		
+	
+		
+
+	}
+
+}
+_________________________________________________________________________________________________________________________________________________________
+OUTPUT(3.3)
+press 1 to Add two String
+ press 2 to put hash at odd places
+ press 3 to remove duplicate
+ press 4 change odd char to uppercase
+ press 5 to check positive and negative string 
+4
+enter a string
+anand
+aNaNd
+
+___________________________________________________________________________________________________________________________________________________
+(3.5)
+import java.util.Arrays;
+
+
+public class StringOperations<Public> {
+
+//	private String str;
+
+	public String Addoperation(String str){
+		String out=str+str;
+		return out;
+		
+	}
+
+
+    public String Oddhash(String str){
+	  String word="";
+	  for (int i=0;i<str.length();i++){
+		  if(i%2==1){
+			  word=word+str.charAt(i);
+		  }else
+			  word=word+'#';
+	  }
+	  return word;
+  }
+
+    public String OddUppercase(String str){
+    	String word="";
+    	
+    	for(int i=0;i<str.length();i++){
+    		if(i%2==1){
+    			word=word+ Character.toUpperCase(str.charAt(i));
+    		}else
+    			word=word+ Character.toLowerCase(str.charAt(i));
+    		
+    		}
+    	return word;
+    	}
+    	
+    
+    public String DuplicateRemove(String str){
+    	String word="";
+    	for(int i=0;i<str.length();i++){
+    		for(int j=1;j<str.length();j++){
+    			if(str.charAt(i)==str.charAt(j)){
+    				word=word+ str.charAt(j);
+    			}else{
+    				continue;
+    			}
+    		}
+    	}return word;
+    }
+    
+    public void checkPositiveString(String str){
+    	int[] arr=new int[str.length()];
+    	int[] arr2=new int[str.length()];
+    	String upperCaseStr= str.toUpperCase();
+    	for(int i=0;i<upperCaseStr.length();i++){
+    		char letter= upperCaseStr.charAt(i);
+    		
+    		arr[i]=letter;
+    		arr2[i]= letter;
+    	}
+    	for(int value: arr){
+    		Arrays.parallelSort(arr);
+//    		System.out.println(value);
+    	}
+    	for(int value2: arr2){
+//    		System.out.println(value2);
+    	}
+    	if(Arrays.equals(arr,arr2)){
+    		System.out.println("String is positive");
+    	}else
+    		System.out.println("string is negative");
+    }
+    }
+
+
+
+import java.util.Scanner;
+
+
+public class StringDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scr =new Scanner(System.in);
+		
+		System.out.println("press 1 to Add two String\n press 2 to put hash at odd places\n press 3 to remove duplicate\n press 4 change odd char to uppercase\n press 5 to check positive and negative string ");
+		int choice=scr.nextInt();
+		
+		StringOperations Sops= new StringOperations();
+		
+		switch(choice){
+		case 1:
+			System.out.println("enter a String");
+			String input=scr.next();
+			
+			System.out.println(Sops.Addoperation(input));
+		    break;
+		    
+		case 2: 
+			System.out.println("enter a string:");
+			String input2=scr.next();
+			
+			System.out.println(Sops.Oddhash(input2));
+			break;
+			
+		case 3:
+			System.out.println("Enter a string");
+			String input3=scr.next();
+			System.out.println(Sops.DuplicateRemove(input3));
+			break;
+			
+		case 4:
+			System.out.println("enter a string");
+			String input4=scr.next();
+			System.out.println(Sops.OddUppercase(input4));
+			break;
+			
+		case 5:
+			System.out.println("enter a string to check postive or negative string");
+			String input5=scr.next();
+			Sops.checkPositiveString(input5);
+			break;
+	
+		
+	
+		
+
+	}
+
+}
+}
+____________________________________________________________________________________________________________________________________________________________________
+
+press 1 to Add two String
+ press 2 to put hash at odd places
+ press 3 to remove duplicate
+ press 4 change odd char to uppercase
+ press 5 to check positive and negative string 
+5
+enter a string to check postive or negative string
+bat
+string is negative
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+package FileSystem;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+
+public class ReadAndReverseWrite {
+
+	public static void main(String[] args) throws Exception {
+		FileInputStream fis = new FileInputStream("yash.txt");
+		BufferedReader d = new BufferedReader(new InputStreamReader(fis));
+		String value = d.readLine();
+		System.out.println(value);
+		StringBuffer sbf = new StringBuffer(value);
+		StringBuffer rev = sbf.reverse();
+		String str = rev.toString();
+		System.out.println(str);
+		FileWriter fw = new FileWriter("reverse.txt");
+		fw.write(str);
+		System.out.println("Reverse Done");
+		fw.close();
+		d.close();
+		fis.close();
+		
+
+	}
+
+}

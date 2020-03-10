@@ -1,0 +1,58 @@
+package com.Capgemini.Employee;
+
+import java.util.*;
+public class StringOperationDemo {
+
+	public static void main(String[] args) {
+		
+		
+		Scanner scr = new Scanner(System.in);
+		
+		
+		System.out.println("Select an option.. \n1.Add two Strings.\n2.Add hash in odd places.\n3.Remove Duplicate, \n4.Change odd char to uppercase. ");
+		int option = scr.nextInt();	
+		StringOperations SO = new StringOperations();
+		
+		switch(option) 
+		{
+		case 1: 
+			System.out.println("Enter a string: ");
+			String input = scr.next();
+			
+			System.out.println((SO.AddOperation(input)));
+			break;
+	
+		case 2:
+			
+			System.out.println("Enter a string: ");
+			String input2 = scr.next();
+			
+			System.out.println(SO.OddHash(input2));
+	
+			break;
+		case 3:
+			System.out.println("Enter a String");
+			String input3 = scr.next();
+			
+			System.out.println(SO.DuplicatesRemove(input3));
+			break;
+			
+		case 4:
+			System.out.println("Enter a String");
+			String input4 = scr.next();
+			
+			System.out.println(SO.OddUppercase(input4));
+			break;
+		
+		case 5:
+			System.out.println("Enter a string");
+			String input5 =scr.next();
+			
+			SO.CheckPositiveString(input5);	
+			break;
+		}
+		
+	}
+	
+
+}
